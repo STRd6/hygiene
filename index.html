@@ -10,7 +10,7 @@
 <body>
 <script>;(function(PACKAGE) {
 require = Require.generateFor(PACKAGE)
-require('./main')
+require('./hygiene')
 })({
   "source": {
     "LICENSE": {
@@ -25,32 +25,38 @@ require('./main')
       "content": "hygiene\n=======\n\nKeeping clean\n",
       "type": "blob"
     },
-    "main.coffee.md": {
-      "path": "main.coffee.md",
+    "hygiene.coffee.md": {
+      "path": "hygiene.coffee.md",
       "mode": "100644",
       "content": "Hygiene keeps our biz clean.\n\nEventually it may expand to perform complex static analysis, but right now it's\njust a bunch of dumb regexes.\n\n    trailingWhitespace = /[ \\t]*$/gm\n    nothing = \"\"\n    newline = \"\\n\"\n\n    ensureTrailingNewline = (content) ->\n      if content.lastIndexOf(newline) != content.length - 1\n        \"#{content}#{newline}\"\n      else\n        content\n\n    module.exports =\n      clean: (content) ->\n        ensureTrailingNewline(\n          content\n          .replace(trailingWhitespace, nothing)\n        )\n",
+      "type": "blob"
+    },
+    "pixie.cson": {
+      "path": "pixie.cson",
+      "mode": "100644",
+      "content": "entryPoint: \"hygiene\"\n",
       "type": "blob"
     },
     "test/hygiene.coffee": {
       "path": "test/hygiene.coffee",
       "mode": "100644",
-      "content": "Hygiene = require \"../main\"\n\ndescribe \"cleaning\", ->\n  it \"should remove trailing whitespace\", ->\n    assert.equal Hygiene.clean(\"heyy   \\n\"), \"heyy\\n\"\n\n  it \"should ensure trailing newline\", ->\n    assert.equal Hygiene.clean(\"a\"), \"a\\n\"\n\n  it \"should keep empties empty\", ->\n    assert.equal Hygiene.clean(\"\"), \"\"\n",
+      "content": "Hygiene = require \"../hygiene\"\n\ndescribe \"cleaning\", ->\n  it \"should remove trailing whitespace\", ->\n    assert.equal Hygiene.clean(\"heyy   \\n\"), \"heyy\\n\"\n\n  it \"should ensure trailing newline\", ->\n    assert.equal Hygiene.clean(\"a\"), \"a\\n\"\n\n  it \"should keep empties empty\", ->\n    assert.equal Hygiene.clean(\"\"), \"\"\n",
       "type": "blob"
     }
   },
   "distribution": {
-    "main": {
-      "path": "main",
+    "hygiene": {
+      "path": "hygiene",
       "content": "(function() {\n  var ensureTrailingNewline, newline, nothing, trailingWhitespace;\n\n  trailingWhitespace = /[ \\t]*$/gm;\n\n  nothing = \"\";\n\n  newline = \"\\n\";\n\n  ensureTrailingNewline = function(content) {\n    if (content.lastIndexOf(newline) !== content.length - 1) {\n      return \"\" + content + newline;\n    } else {\n      return content;\n    }\n  };\n\n  module.exports = {\n    clean: function(content) {\n      return ensureTrailingNewline(content.replace(trailingWhitespace, nothing));\n    }\n  };\n\n}).call(this);\n",
       "type": "blob"
     },
     "test/hygiene": {
       "path": "test/hygiene",
-      "content": "(function() {\n  var Hygiene;\n\n  Hygiene = require(\"../main\");\n\n  describe(\"cleaning\", function() {\n    it(\"should remove trailing whitespace\", function() {\n      return assert.equal(Hygiene.clean(\"heyy   \\n\"), \"heyy\\n\");\n    });\n    it(\"should ensure trailing newline\", function() {\n      return assert.equal(Hygiene.clean(\"a\"), \"a\\n\");\n    });\n    return it(\"should keep empties empty\", function() {\n      return assert.equal(Hygiene.clean(\"\"), \"\");\n    });\n  });\n\n}).call(this);\n",
+      "content": "(function() {\n  var Hygiene;\n\n  Hygiene = require(\"../hygiene\");\n\n  describe(\"cleaning\", function() {\n    it(\"should remove trailing whitespace\", function() {\n      return assert.equal(Hygiene.clean(\"heyy   \\n\"), \"heyy\\n\");\n    });\n    it(\"should ensure trailing newline\", function() {\n      return assert.equal(Hygiene.clean(\"a\"), \"a\\n\");\n    });\n    return it(\"should keep empties empty\", function() {\n      return assert.equal(Hygiene.clean(\"\"), \"\");\n    });\n  });\n\n}).call(this);\n",
       "type": "blob"
     }
   },
-  "entryPoint": "main",
+  "entryPoint": "hygiene",
   "dependencies": {},
   "repository": {
     "id": 13007778,
@@ -59,7 +65,7 @@ require('./main')
     "owner": {
       "login": "STRd6",
       "id": 18894,
-      "avatar_url": "https://0.gravatar.com/avatar/33117162fff8a9cf50544a604f60c045?d=https%3A%2F%2Fidenticons.github.com%2F39df222bffe39629d904e4883eabc654.png",
+      "avatar_url": "https://2.gravatar.com/avatar/33117162fff8a9cf50544a604f60c045?d=https%3A%2F%2Fidenticons.github.com%2F39df222bffe39629d904e4883eabc654.png",
       "gravatar_id": "33117162fff8a9cf50544a604f60c045",
       "url": "https://api.github.com/users/STRd6",
       "html_url": "https://github.com/STRd6",
@@ -114,16 +120,16 @@ require('./main')
     "notifications_url": "https://api.github.com/repos/STRd6/hygiene/notifications{?since,all,participating}",
     "labels_url": "https://api.github.com/repos/STRd6/hygiene/labels{/name}",
     "created_at": "2013-09-22T04:41:53Z",
-    "updated_at": "2013-09-22T04:41:53Z",
-    "pushed_at": "2013-09-22T04:41:53Z",
+    "updated_at": "2013-09-22T18:20:37Z",
+    "pushed_at": "2013-09-22T18:20:36Z",
     "git_url": "git://github.com/STRd6/hygiene.git",
     "ssh_url": "git@github.com:STRd6/hygiene.git",
     "clone_url": "https://github.com/STRd6/hygiene.git",
     "svn_url": "https://github.com/STRd6/hygiene",
     "homepage": null,
-    "size": 0,
+    "size": 268,
     "watchers_count": 0,
-    "language": null,
+    "language": "CoffeeScript",
     "has_issues": true,
     "has_downloads": true,
     "has_wiki": true,
