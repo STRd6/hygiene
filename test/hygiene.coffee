@@ -1,4 +1,4 @@
-Hygiene = require "../main"
+Hygiene = require "../hygiene"
 
 describe "cleaning", ->
   it "should remove trailing whitespace", ->
