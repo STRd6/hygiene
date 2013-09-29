@@ -1,4 +1,5 @@
 {
+  "version": "0.1.0",
   "source": {
     "LICENSE": {
       "path": "LICENSE",
@@ -21,7 +22,7 @@
     "pixie.cson": {
       "path": "pixie.cson",
       "mode": "100644",
-      "content": "entryPoint: \"hygiene\"\nremoteDependencies: [\n  \"http://strd6.github.io/require/v0.2.0.js\"\n]\n",
+      "content": "version: \"0.1.0\"\nentryPoint: \"hygiene\"\nremoteDependencies: [\n  \"http://strd6.github.io/require/v0.2.0.js\"\n]\n",
       "type": "blob"
     },
     "test/hygiene.coffee": {
@@ -39,7 +40,7 @@
     },
     "pixie": {
       "path": "pixie",
-      "content": "module.exports = {\"entryPoint\":\"hygiene\",\"remoteDependencies\":[\"http://strd6.github.io/require/v0.2.0.js\"]};",
+      "content": "module.exports = {\"version\":\"0.1.0\",\"entryPoint\":\"hygiene\",\"remoteDependencies\":[\"http://strd6.github.io/require/v0.2.0.js\"]};",
       "type": "blob"
     },
     "test/hygiene": {
