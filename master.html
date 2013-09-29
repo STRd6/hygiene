@@ -1,15 +1,12 @@
 <!doctype html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<script class="env" src="//cdnjs.cloudflare.com/ajax/libs/coffee-script/1.6.3/coffee-script.min.js"></script>
-<script class="env" src="//code.jquery.com/jquery-1.10.1.min.js"></script>
-<script class="env" src="//d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
-<script class="env" src="http://strd6.github.io/tempest/javascripts/envweb.js"></script>
-<script class="env" src="http://strd6.github.io/require/master.js"></script>
+<script class="env" src="http://strd6.github.io/require/v0.2.0.js"></script>
 </head>
 <body>
-<script>;(function(PACKAGE) {
-require = Require.generateFor(PACKAGE)
+<script>
+;(function(PACKAGE) {
+var require = Require.generateFor(PACKAGE);
 require('./hygiene')
 })({
   "source": {
@@ -28,13 +25,13 @@ require('./hygiene')
     "hygiene.coffee.md": {
       "path": "hygiene.coffee.md",
       "mode": "100644",
-      "content": "Hygiene keeps our biz clean.\n\nEventually it may expand to perform complex static analysis, but right now it's\njust a bunch of dumb regexes.\n\n    trailingWhitespace = /[ \\t]*$/gm\n    nothing = \"\"\n    newline = \"\\n\"\n\n    ensureTrailingNewline = (content) ->\n      if content.lastIndexOf(newline) != content.length - 1\n        \"#{content}#{newline}\"\n      else\n        content\n\n    module.exports =\n      clean: (content) ->\n        ensureTrailingNewline(\n          content\n          .replace(trailingWhitespace, nothing)\n        )\n",
+      "content": "Hygiene\n=======\n\nHygiene keeps our biz clean.\n\nEventually it may expand to perform complex static analysis, but right now it's\njust a bunch of dumb regexes.\n\n    trailingWhitespace = /[ \\t]*$/gm\n    nothing = \"\"\n    newline = \"\\n\"\n\n    ensureTrailingNewline = (content) ->\n      if content.lastIndexOf(newline) != content.length - 1\n        \"#{content}#{newline}\"\n      else\n        content\n\n    module.exports =\n      clean: (content) ->\n        ensureTrailingNewline(\n          content\n          .replace(trailingWhitespace, nothing)\n        )\n",
       "type": "blob"
     },
     "pixie.cson": {
       "path": "pixie.cson",
       "mode": "100644",
-      "content": "entryPoint: \"hygiene\"\n",
+      "content": "entryPoint: \"hygiene\"\nremoteDependencies: [\n  \"http://strd6.github.io/require/v0.2.0.js\"\n]\n",
       "type": "blob"
     },
     "test/hygiene.coffee": {
@@ -50,6 +47,11 @@ require('./hygiene')
       "content": "(function() {\n  var ensureTrailingNewline, newline, nothing, trailingWhitespace;\n\n  trailingWhitespace = /[ \\t]*$/gm;\n\n  nothing = \"\";\n\n  newline = \"\\n\";\n\n  ensureTrailingNewline = function(content) {\n    if (content.lastIndexOf(newline) !== content.length - 1) {\n      return \"\" + content + newline;\n    } else {\n      return content;\n    }\n  };\n\n  module.exports = {\n    clean: function(content) {\n      return ensureTrailingNewline(content.replace(trailingWhitespace, nothing));\n    }\n  };\n\n}).call(this);\n",
       "type": "blob"
     },
+    "pixie": {
+      "path": "pixie",
+      "content": "module.exports = {\"entryPoint\":\"hygiene\",\"remoteDependencies\":[\"http://strd6.github.io/require/v0.2.0.js\"]};",
+      "type": "blob"
+    },
     "test/hygiene": {
       "path": "test/hygiene",
       "content": "(function() {\n  var Hygiene;\n\n  Hygiene = require(\"../hygiene\");\n\n  describe(\"cleaning\", function() {\n    it(\"should remove trailing whitespace\", function() {\n      return assert.equal(Hygiene.clean(\"heyy   \\n\"), \"heyy\\n\");\n    });\n    it(\"should ensure trailing newline\", function() {\n      return assert.equal(Hygiene.clean(\"a\"), \"a\\n\");\n    });\n    return it(\"should keep empties empty\", function() {\n      return assert.equal(Hygiene.clean(\"\"), \"\");\n    });\n  });\n\n}).call(this);\n",
@@ -58,6 +60,9 @@ require('./hygiene')
   },
   "entryPoint": "hygiene",
   "dependencies": {},
+  "remoteDependencies": [
+    "http://strd6.github.io/require/v0.2.0.js"
+  ],
   "repository": {
     "id": 13007778,
     "name": "hygiene",
@@ -120,8 +125,8 @@ require('./hygiene')
     "notifications_url": "https://api.github.com/repos/STRd6/hygiene/notifications{?since,all,participating}",
     "labels_url": "https://api.github.com/repos/STRd6/hygiene/labels{/name}",
     "created_at": "2013-09-22T04:41:53Z",
-    "updated_at": "2013-09-22T18:20:37Z",
-    "pushed_at": "2013-09-22T18:20:36Z",
+    "updated_at": "2013-09-22T18:22:32Z",
+    "pushed_at": "2013-09-22T18:22:31Z",
     "git_url": "git://github.com/STRd6/hygiene.git",
     "ssh_url": "git@github.com:STRd6/hygiene.git",
     "clone_url": "https://github.com/STRd6/hygiene.git",
@@ -156,6 +161,7 @@ require('./hygiene')
   "progenitor": {
     "url": "http://strd6.github.io/editor/"
   }
-});</script>
+});
+</script>
 </body>
 </html>
