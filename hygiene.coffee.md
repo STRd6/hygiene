@@ -1,3 +1,6 @@
+Hygiene
+=======
+
 Hygiene keeps our biz clean.
 
 Eventually it may expand to perform complex static analysis, but right now it's
